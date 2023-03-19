@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Predicting Customer Churn{% endblock %}
+{% block content %}
+    <style>
+        p {padding-left: 20px}
+        th, td, tr {padding: 0 0.5em; line-height: normal}
+        thead th {min-width: 100px; text-align: left}
+        table {margin: 10px }
+        .left {padding-left: 40px}
+        h1 {padding: 40px 40px}
+        br {height: 40px}
+    </style>
+    <h1 class="left">Descriptive Analysis</h1>
+    <img src="{{ url_for('static', filename='img/heatmap.png') }}" width="800"/>
+    <p>Feature heatmap displaying relationship between features in the data.</p>
+    <img src="{{ url_for('static', filename='img/internet_churn.png') }}" width="600"/>
+    <p>Customer churn versus subscription to internet service.</p>
+    <img src="{{ url_for('static', filename='img/internet_option_churn.png') }}" width="800"/>
+    <p>Customer churn versus subscription to optional internet services.</p>
+    <img src="{{ url_for('static', filename='img/phone_churn.png') }}" width="600"/>
+    <p>Customer churn versus subscription to phone service.</p>
+
+    <br><br>
+
+    <h1 class="left">Prescriptive Analysis</h1>
+    <p>Model's accuracy score is {{ model.score }}%</p>
+    <br>
+    <img src="{{ url_for('static', filename='img/confusion.png') }}" width="300"/>
+    <p>Confusion matrix showing both false negatives and false positives.</p>
+    <br>
+    {{ model.classification_report.to_html()|safe }}
+    <p>Classification report showing various machine learning metrics.</p>
+    <br>
+    {% if 'admin' in current_user.roles %}
+        <p style="font-size: xx-small">model: {{ model.seed }} now: {{ now }}</p>
+    {% endif %}
+{% endblock %}

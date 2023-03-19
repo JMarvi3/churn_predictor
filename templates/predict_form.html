@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block title %}Predict{% endblock %}
+{% block content %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"
+            integrity="sha256-t9UJPrESBeG2ojKTIcFLPGF7nHi2vEc7f5A2KpH/UBU=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.css"
+          integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@0.7.0"></script>
+    <script src="{{ url_for('static', filename='predict.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='predict.css') }}">
+
+    <div class="parent">
+        <div class="child form-box">
+            <form method="post">
+                <label>Gender: <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select></label>
+                <label>Senior Citizen: <select id="SeniorCitizen" name="SeniorCitizen">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select></label>
+                <label>Partner: <select id="Partner" name="Partner">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select></label>
+                <label>Dependents: <select id="Dependents" name="Dependents">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select></label>
+                <label>Tenure: <input type="number" id="tenure" name="tenure" value="0" min="0"></label>
+                <label>Phone Service: <select id="PhoneService" name="PhoneService" onchange="phoneChange(this)">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select></label>
+                <label class="needsPhoneService">Multiple Lines: <select id="MultipleLines" name="MultipleLines">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No phone service" selected>No phone service</option>
+                </select></label>
+                <label>Internet Service: <select id="InternetService" name="InternetService"
+                                                 onfocus="this.oldvalue = this.value" onchange="internetChange(this)">
+                    <option value="No">No</option>
+                    <option value="DSL">DSL</option>
+                    <option value="Fiber optic">Fiber optic</option>
+                </select></label>
+                <label class="needsInternet">Online Security: <select id="OnlineSecurity" name="OnlineSecurity">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service" selected>No internet service</option>
+                </select></label>
+                <label class="needsInternet">Online Backup: <select id="OnlineBackup" name="OnlineBackup">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service" selected>No internet service</option>
+                </select></label>
+                <label class="needsInternet">DeviceProtection: <select id="DeviceProtection" name="DeviceProtection">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service" selected>No internet service</option>
+                </select></label>
+                <label class="needsInternet">Tech Support: <select id="TechSupport" name="TechSupport">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service" selected>No internet service</option>
+                </select></label>
+                <label class="needsInternet">Streaming TV: <select id="StreamingTV" name="StreamingTV">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service" selected>No internet service</option>
+                </select></label>
+                <label class="needsInternet">Streaming Movies: <select id="StreamingMovies" name="StreamingMovies">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service" selected>No internet service</option>
+                </select></label>
+                <label>Contract: <select id="Contract" name="Contract">
+                    <option value="Month-to-month">Month-to-month</option>
+                    <option value="One year">One year</option>
+                    <option value="Two year">Two year</option>
+                </select></label>
+                <label>Paperless Billing: <select id="PaperlessBilling" name="PaperlessBilling">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select></label>
+                <label>Payment Method: <select id="PaymentMethod" name="PaymentMethod">
+                    <option value="Electronic check">Electronic Check</option>
+                    <option value="Mailed check">Mailed Check</option>
+                    <option value="Bank transfer (automatic)">Bank Transfer (automatic)</option>
+                    <option value="Credit card (automatic)">Credit Card (automatic)</option>
+                </select></label>
+                <label>Monthly Charges: <input type="text" id="MonthlyCharges" name="MonthlyCharges"
+                                               value="0.00"></label>
+                <label>Total Charges: <input type="text" id="TotalCharges" name="TotalCharges" value="0.00"></label>
+            </form>
+        </div>
+        <div id="results" class="child">
+            <canvas id="pieChart" height="800" width="800"></canvas>
+        </div>
+    </div>
+{% endblock %}

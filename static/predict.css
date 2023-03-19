@@ -1,0 +1,51 @@
+.parent {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around
+}
+
+.child {
+    padding: 20px
+}
+
+.form-box {
+    width: 20%;
+    min-width: 400px
+}
+
+p {
+    text-align: center
+}
+
+#error {
+    font-weight: bold;
+    margin-top: 10px;
+    display: block
+}
+
+#results {
+    font-size: larger;
+    display: block;
+    width: 800px;
+    max-width: 60%
+}
+
+input, select {
+    min-width: fit-content;
+    width: 60%;
+    float: right
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around
+}
+
+label {
+    width: 100%
+}
+
+:invalid {
+    border-color: red
+}

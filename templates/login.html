@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Login{% endblock %}
+{% block content %}
+<form method="POST">
+      {{ form.csrf_token }}
+      <fieldset class="form-group">
+          {{ form.username.label }}
+          {{ form.username(class="form-control") }}
+      </fieldset>
+
+      <fieldset class="form-group">
+          {{ form.password.label }}
+          {{ form.password(class="form-control") }}
+      </fieldset>
+      {{ form.submit(class="btn btn-primary") }}
+</form>
+{% endblock %}
