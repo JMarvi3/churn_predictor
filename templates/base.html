@@ -30,6 +30,7 @@
             {% if 'admin' in current_user.roles %}
                 <a class="nav-item nav-link" id="rebuild" href="{{ url_for("rebuild") }}">Rebuild model</a>
             {% endif %}
+            <a class="nav-item nav-link" id="source" href="https://github.com/JMarvi3/churn_predictor">Source code</a>
             <a class="nav-item nav-link" id="logout" href="{{ url_for("logout") }}">Logout</a>
         {% else %}
             <a class="nav-item nav-link current" id="login" href="{{ url_for("login") }}">Login</a>
